@@ -1,0 +1,31 @@
+.pokemon {
+    border: 2px solid #f3f3f3;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    width: 230px;
+}
+
+.pokemon p {
+    margin: 5px 0;
+    font-family: Arial, sans-serif;
+}
+
+.pokemon img {
+    display: block;
+    margin: 10px auto;
+    border-radius: 50%;
+}
+
+.hover-effect {
+    transition: all 0.3s ease; /* Smooth transition for the effect */
+}
+  
+.hover-effect:hover {
+    background-color: #f0f0f0; /* Example hover effect */
+    transform: scale(1.03); /* Example hover effect */
+}
+  
