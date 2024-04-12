@@ -11,13 +11,14 @@ function PokemonGrid(){
         async function fetchPokemons() {
           const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=12&offset=${offset}`);
           const data = await response.json();
+
           const pokemonsData = data.results.map((pokemon, index) => ({
             id: offset + index + 1,
             name: pokemon.name,
-            // Constructing a URL to a placeholder image as an example
             imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${offset + index + 1}.png`,
           }));
-          setPokemons(pokemonsData);
+
+        setPokemons(pokemonsData);
         }
     
         fetchPokemons();
@@ -33,6 +34,7 @@ function PokemonGrid(){
 
     const handlePokemonClick = (pokemon) => {
         setSelectedPokemon(pokemon); // Set the clicked Pokemon as the selected one
+        console.log(pokemon);
     };
 
     return (
@@ -48,8 +50,8 @@ function PokemonGrid(){
                     ))}
                 </div>
                 <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4" style={{marginRight: '20px'}} onClick={handleBackClick}>← Back</button>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4" onClick={handleForwardClick}>Forward →</button>
+                    <button type="button" className="btn btn-outline-secondary btn-lg px-4" style={{marginRight: '20px'}} onClick={handleBackClick}>← Back</button>
+                    <button type="button" className="btn btn-outline-secondary btn-lg px-4" onClick={handleForwardClick}>Forward →</button>
                 </div>
             </div>
         </>
