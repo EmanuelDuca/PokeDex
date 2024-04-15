@@ -1,55 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import pokeImage from "../images/poke-headline.webp";
+import pk from "../images/pk.png";
+import "./HeadLine.css";
 
-function HeadLine({ pokemon }){
-    let content = {}; 
+function HeadLine({ pokemon }) {
+    const [selectedPokemon, setSelectedPokemon] = useState(null);
+    const [pokemonDetails, setPokemonDetails] = useState(null);
+    
+    const handlePokemonClick = (pokemonName) => {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Pokemon details:", data);
+                setPokemonDetails(data);
+                setSelectedPokemon(pokemonName); // Update selectedPokemon state
+            })
+            .catch(error => console.error('Error fetching Pokemon details:', error));
+    };
 
-    if (!pokemon){
-        content = {
-            name: "Pokemon Dex",
-            description: "Click on a pokemon to find all the information about it.",
-            imageUrl: pokeImage 
-        };
-    } else {
-        // Assign pokemon properties to content if pokemon exists
-        content = {
-            name: pokemon.name,
-            description: pokemon.description, // Assuming 'description' is a property of 'pokemon'
-            imageUrl: pokemon.imageUrl // Assuming 'imageUrl' is a property of 'pokemon'
-        };
-    }
-
-    const handleFindMoreClick = () => {
-        // Check if pokemon exists and has an ID
-        if (pokemon && pokemon.id) {
-            // Navigate to the route with the ID of the selected Pokémon
-            window.location.href = `#/about/${pokemon.name}`;
-        }
+    let content = pokemon ? {
+        name: pokemon.name,
+        description: pokemon.description,
+        imageUrl: pokemon.imageUrl,
+        stats: pokemon.stats
+    } : {
+        name: "Pokemon Dex",
+        description: "Click on a pokemon to find all the information about it.",
+        imageUrl: pokeImage,
+        stats: null
     };
 
     return (
-        <div className="container my-5">
-            <div className="row p-4 pb-5 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+        <div className="headline container my-5">
+            <div className="row p-4 pb-5 pe-lg-0 pt-lg-5 align-items-center">
                 <div className="col-lg-7 p-3 p-lg-5 pt-lg-3">
-                    <h1 className="display-4 fw-bold lh-1 text-body-emphasis">{content.name}</h1>
+                    <h1 className="display-4 fw-bold lh-1">{content.name}</h1>
                     <p className="lead">{content.description}</p>
-                    <div className="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                    <button onClick={handleFindMoreClick} type="button" className="btn btn-outline-secondary btn-lg px-4" >Find more</button>
-
-                    </div>
+                    {pokemon && ( // Render button only if pokemon prop is not null
+                        <button onClick={() => handlePokemonClick(content.name)}>Find more</button>
+                    )}
+                    {selectedPokemon === content.name && pokemonDetails && (
+                        <div>
+                            {pokemonDetails.stats && (
+                                <p>Stats: {pokemonDetails.stats.map(stat => `${stat.base_stat} (${stat.stat.name})`).join(', ')}</p>
+                            )}
+                            {pokemonDetails.abilities && (
+                                <p>Abilities: {pokemonDetails.abilities.map(ability => ability.ability.name).join(', ')}</p>
+                            )}
+                            {pokemonDetails.types && (
+                                <p>Type: {pokemonDetails.types.map(type => type.type.name).join(', ')}</p>
+                            )}
+                            {pokemonDetails.height && <p>Height: {pokemonDetails.height}</p>}
+                            {pokemonDetails.weight && <p>Weight: {pokemonDetails.weight}</p>}
+                        </div>
+                    )}
                 </div>
-                <div className="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-                    <img
-                        className="rounded-lg-3"
-                        src={content.imageUrl}
-                        alt={content.name}
-                        style={{
-                            width: '100%',
-                            height: '200px',
-                            objectFit: 'cover', // or 'contain' depending on the desired effect
-                            display: 'block',
-                        }}
-                    />
+                <div className="col-lg-4 offset-lg-1 p-0 overflow-hidden">
+                    <img className="rounded-lg-3" src={content.imageUrl} alt={content.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
                 </div>
             </div>
         </div>
