@@ -48,8 +48,8 @@ function PokemonGrid(){
                     ))}
                 </div>
                 <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4" style={{marginRight: '20px'}} onClick={handleBackClick}>← Back</button>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4" onClick={handleForwardClick}>Forward →</button>
+                    <button type="button" className="btn btn-outline-secondary btn-lg px-4" style={{marginRight: '20px'}} onClick={handleBackClick}>← Back</button>
+                    <button type="button" className="btn btn-outline-secondary btn-lg px-4" onClick={handleForwardClick}>Forward →</button>
                 </div>
             </div>
         </>
