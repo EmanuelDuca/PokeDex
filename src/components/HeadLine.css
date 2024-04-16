@@ -1,0 +1,49 @@
+body{
+    background-color: #EEF5FF;
+}
+.headline {
+    background-color: #86B6F6; /* Light grey background for the whole component */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.headline .row {
+    margin: 0; /* Remove default margins from row */
+}
+
+.headline h1 {
+    color: white; /* Pokémon red */
+    margin-bottom: 20px;
+}
+
+.headline p {
+    color: white; /* Slightly dark grey for text */
+}
+
+.headline button {
+    background-color: #176B87; /* Bootstrap primary blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.headline button:hover {
+    background-color: darkred; /* Darken the button on hover */
+}
+
+.headline img {
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.headline img:hover {
+    transform: scale(1.05); /* Slightly zoom in on hover */
+}
+
+.lead {
+    font-size: 1.2rem; /* Slightly larger than default for visibility */
+    color: #666; /* Soft black for readability */
+}

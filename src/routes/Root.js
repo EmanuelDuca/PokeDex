@@ -20,7 +20,7 @@ export default function App() {
                     </div>
                 </div>
             </nav>
-            <Outlet /> 
+            <Outlet />  
         </>
     )
 }
