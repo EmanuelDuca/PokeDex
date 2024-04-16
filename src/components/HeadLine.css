@@ -1,8 +1,8 @@
 body{
-    background-color: #63bbff;
+    background-color: #EEF5FF;
 }
 .headline {
-    background-color: #3a4dca; /* Light grey background for the whole component */
+    background-color: #86B6F6; /* Light grey background for the whole component */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -12,16 +12,16 @@ body{
 }
 
 .headline h1 {
-    color: #ffde02; /* Pokémon red */
+    color: white; /* Pokémon red */
     margin-bottom: 20px;
 }
 
 .headline p {
-    color: #ffde02; /* Slightly dark grey for text */
+    color: white; /* Slightly dark grey for text */
 }
 
 .headline button {
-    background-color: red; /* Bootstrap primary blue */
+    background-color: #176B87; /* Bootstrap primary blue */
     color: white;
     border: none;
     padding: 10px 20px;
